@@ -10,8 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController
 {
-//    override func viewDidAppear(_ animated: Bool)
-//    {
-//        self.navigationController?.setViewControllers([self], animated: false)
-//    }
+    override func viewDidAppear(_ animated: Bool)
+    {
+        self.navigationController?.setViewControllers([self], animated: false)
+    }
 }

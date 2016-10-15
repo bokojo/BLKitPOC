@@ -23,7 +23,8 @@ class WeatherViewController: UIViewController
     
     deinit
     {
-        if let t = task {
+        if let t = task
+        {
             t.cancel()
         }
         
