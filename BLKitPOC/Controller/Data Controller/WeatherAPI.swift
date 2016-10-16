@@ -22,7 +22,7 @@ class WeatherAPI
     // MARK: - API DEFINITIONS -
     // http://api.wunderground.com/api/5edc947d9938f768/forecast/q/CA/San_Francisco.json
     
-    func getSFWeather(success: @escaping (([AnyObject]) -> Void), failure: ((NSError?) -> Void)?) -> URLSessionDataTask?
+    func getSFWeather(success: @escaping (([Any]) -> Void), failure: ((NSError?) -> Void)?) -> URLSessionDataTask?
     {
         
         let parameters = BLAPIController.APIParameters(

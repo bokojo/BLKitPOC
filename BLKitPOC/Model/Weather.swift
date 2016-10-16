@@ -9,7 +9,7 @@
 import Foundation
 import BLKit
 
-class Weather: BLAPIModel
+struct Weather: BLAPIModel
 {
     
     let conditions: String
@@ -21,12 +21,12 @@ class Weather: BLAPIModel
         self.icon_url = icon_url
     }
     
-    required convenience init?(dictionary: NSDictionary)
+    init?(dictionary: [AnyHashable : Any])
     {
         guard
             let conditions = dictionary["conditions"] as? String,
             let icon_url = dictionary["icon_url"] as? String
-            else { return nil }
+        else { return nil }
         
         self.init(conditions: conditions, icon_url: icon_url)
     }
