@@ -17,7 +17,7 @@ class WeatherViewController: UIViewController
     
     var data = [Weather]()
     let api = (UIApplication.shared.delegate as! AppDelegate).weatherAPI
-    weak var task: URLSessionDataTask?
+    weak var task: URLSessionTask?
     
     // MARK: - Init / Deinit
     
