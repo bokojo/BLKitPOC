@@ -20,11 +20,11 @@ class WeatherAPI
     }
     
     // MARK: - API DEFINITIONS -
+    // MARK: - GET
     // http://api.wunderground.com/api/5edc947d9938f768/forecast/q/CA/San_Francisco.json
     
-    func getSFWeather(success: @escaping (([Any]) -> Void), failure: ((NSError?) -> Void)?) -> URLSessionDataTask?
+    func getSFWeather(success: @escaping (([Any]) -> Void), failure: ((Error?) -> Void)?) -> URLSessionTask?
     {
-        
         let parameters = BLAPIController.APIParameters(
             
             urlString: "\(apiController.host)api/\(WeatherUndergroundAPIKey)/forecast/q/CA/San_Francisco.json",
@@ -38,4 +38,17 @@ class WeatherAPI
         return apiController.serverInteractionBy(parameters: parameters)
 
     }
+    
+    // MARK: - POST 
+    
+    func postSFWeather(success: @escaping (([Any]) -> Void), failure: ((Error?) -> Void)) -> URLSessionTask?
+    {
+        let parameters = BLAPIController.APIParameters(
+            urlString: "Moo",
+            type: Weather.self
+        )
+        
+        return apiController.serverInteractionBy(parameters: parameters)
+    }
+    
 }

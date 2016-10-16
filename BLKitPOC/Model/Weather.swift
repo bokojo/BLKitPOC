@@ -11,6 +11,8 @@ import BLKit
 
 struct Weather: BLAPIModel
 {
+    static let conditionsKey = "conditions"
+    static let iconURLKey = "icon_url"
     
     let conditions: String
     let icon_url: String
@@ -24,10 +26,18 @@ struct Weather: BLAPIModel
     init?(dictionary: [AnyHashable : Any])
     {
         guard
-            let conditions = dictionary["conditions"] as? String,
-            let icon_url = dictionary["icon_url"] as? String
+            let conditions = dictionary[Weather.conditionsKey] as? String,
+            let icon_url = dictionary[Weather.iconURLKey] as? String
         else { return nil }
         
         self.init(conditions: conditions, icon_url: icon_url)
+    }
+}
+
+extension Weather: BLAPIModelUploadable
+{
+    var postData: Data?
+    {
+        return "\(Weather.conditionsKey)=\(conditions)&\(Weather.iconURLKey)=\(icon_url)".data(using: .utf8)
     }
 }
