@@ -9,7 +9,7 @@
 import UIKit
 import BLKit
 
-class WeatherViewController: UIViewController
+class WeatherViewController: BLViewController
 {
     // MARK: - Properties
     
@@ -41,30 +41,21 @@ class WeatherViewController: UIViewController
     
     // MARK: - BLKit Data Handling
         
-    func fetchData()
+    override func fetchData()
     {
-        task = self.api.getSFWeather(
-            success:
-            {
-                [weak self]
-                data in
-                
-                guard self != nil else { return }
-                
-                self!.data = data as! [Weather];
-                self!.tableView.reloadData()
-            },
-            failure:
-            {
-                [weak self]
-                error in
-                
-                guard self != nil else { return }
-                
-                self!.data = [Weather(conditions: error?.localizedDescription ?? "Error", icon_url: "No URL")]
-                self!.tableView.reloadData()
-            }
-        )
+        task = self.api.getSFWeather(success: self.mkSuccess(), failure: mkFailure())
+    }
+    
+    override func display(data: [AnyObject])
+    {
+        self.data = data as! [Weather];
+        self.tableView.reloadData()
+    }
+    
+    override func display(error: Error?)
+    {
+        self.data = [Weather(conditions: error?.localizedDescription ?? "Error", icon_url: "")]
+        self.tableView.reloadData()
     }
 }
 
